@@ -64,6 +64,7 @@ export default function Sidebar({ isOpen, onClose }) {
                                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                                 }`
                             }
+                            onClick={onClose}
                         >
                             <item.icon size={20} />
                             {item.name}
