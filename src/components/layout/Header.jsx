@@ -1,8 +1,8 @@
 import { useAuth } from '../../hooks/useAuth';
 import { useBuilder } from '../../hooks/useBuilder';
-import { LogOut, Bell, User } from 'lucide-react';
+import { LogOut, Bell, User, Menu } from 'lucide-react';
 
-export default function Header() {
+export default function Header({ onMenuClick }) {
     const { user, isDemo, logout } = useAuth();
     const { builder } = useBuilder();
 
@@ -25,14 +25,21 @@ export default function Header() {
                         </span>
                     )}
                 </h2>
+
                 {builder?.plan === 'free' && (
-                    <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">
+                    <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium hidden sm:inline-block">
                         Free Plan
                     </span>
                 )}
             </div>
 
             <div className="flex items-center gap-4">
+                <button
+                    onClick={onMenuClick}
+                    className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg md:hidden"
+                >
+                    <Menu size={24} />
+                </button>
                 <button className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
                     <Bell size={20} />
                     <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
@@ -53,6 +60,6 @@ export default function Header() {
                     </button>
                 </div>
             </div>
-        </header>
+        </header >
     );
 }
