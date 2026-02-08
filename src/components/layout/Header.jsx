@@ -16,30 +16,32 @@ export default function Header({ onMenuClick }) {
 
     return (
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
-            <div className="flex items-center gap-4">
-                <h2 className="text-lg font-semibold text-gray-800 flex items-center">
-                    Welcome, {builder?.name || user?.email}
+            <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
+                <button
+                    onClick={onMenuClick}
+                    className="p-1 md:p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg md:hidden shrink-0"
+                >
+                    <Menu size={24} />
+                </button>
+                <h2 className="text-sm md:text-lg font-semibold text-gray-800 flex items-center truncate">
+                    <span className="hidden sm:inline">Welcome,&nbsp;</span>
+                    <span className="truncate max-w-[120px] sm:max-w-xs">{builder?.name || user?.email}</span>
                     {isDemo && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 ml-3 border border-indigo-200">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 ml-3 border border-indigo-200 hidden sm:inline-flex">
                             🧪 Demo Mode
                         </span>
                     )}
                 </h2>
 
                 {builder?.plan === 'free' && (
-                    <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium hidden sm:inline-block">
+                    <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium hidden sm:inline-block shrink-0">
                         Free Plan
                     </span>
                 )}
             </div>
 
             <div className="flex items-center gap-4">
-                <button
-                    onClick={onMenuClick}
-                    className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg md:hidden"
-                >
-                    <Menu size={24} />
-                </button>
+
                 <button className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
                     <Bell size={20} />
                     <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
